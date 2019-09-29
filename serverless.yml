@@ -3,6 +3,12 @@ service: line-api-study-golang
 plugins:
   - serverless-offline
 
+custom:
+  defaultStage: dev
+  otherfile:
+    environment:
+      dev: ${file(./conf/dev/dev.yml)}
+
 provider:
   name: aws
   runtime: go1.x
@@ -17,11 +23,17 @@ package:
    - ./bin/**
 
 functions:
-  app:
+  bot:
     handler: bin/main
+    environment:
+      CHANNEL_SECRET: ${self:custom.otherfile.environment.${self:provider.stage}.CHANNEL_SECRET}
+      CHANNEL_TOKEN: ${self:custom.otherfile.environment.${self:provider.stage}.CHANNEL_TOKEN}
+
     events:
-      - http: ANY /
-      - http: 'ANY {proxy+}'
+      - http:
+          path: callback
+          method: post
+          cors: true
 
 # resources:
 #   Resources:

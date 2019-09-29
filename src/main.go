@@ -1,19 +1,37 @@
 package main
 
 import (
-	"github.com/aws/aws-lambda-go/lambda"
+    "errors"
+    "fmt"
+    "os"
+
+    "github.com/aws/aws-lambda-go/events"
+    "github.com/aws/aws-lambda-go/lambda"
+    "github.com/line/line-bot-sdk-go/linebot"
 )
 
-type Response struct {
-	Message string `json:"message"`
-}
-
-func Handler() (Response, error) {
-	return Response{
-		Message: "Go Serverless v1.0! Your function executed successfully!",
-	}, nil
+func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+    line := Line{}
+    err := line.New(
+        os.Getenv("CHANNEL_SECRET"),
+        os.Getenv("CHANNEL_TOKEN"))
+    if err != nil {
+        fmt.Println(err)
+    }
+    eve, err := ParseRequest(line.ChannelSecret, request)
+    if err != nil {
+        status := 200
+        if err == linebot.ErrInvalidSignature {
+            status = 400
+        } else {
+            status = 500
+        }
+        return events.APIGatewayProxyResponse{StatusCode: status}, errors.New("Bat Request")
+    }
+    line.EventRouter(eve)
+    return events.APIGatewayProxyResponse{Body: request.Body, StatusCode: 200}, nil
 }
 
 func main() {
-	lambda.Start(Handler)
+    lambda.Start(Handler)
 }
