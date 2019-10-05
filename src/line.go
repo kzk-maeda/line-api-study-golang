@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/line/line-bot-sdk-go/linebot"
@@ -14,10 +15,6 @@ type Line struct {
 
 func (r *Line) SendTextMessage(message string, replyToken string) error {
 	return r.Reply(replyToken, linebot.NewTextMessage(message))
-}
-
-func (r *Line) SendTemplateMessage(replyToken, altText string, template linebot.Template) error {
-	return r.Reply(replyToken, linebot.NewTemplateMessage(altText, template))
 }
 
 func (r *Line) SendFlexMessage(altText string, jsonString string, replyToken string) error {
@@ -56,9 +53,20 @@ func (r *Line) EventRouter(eve []*linebot.Event) {
 	for _, event := range eve {
 		switch event.Type {
 		case linebot.EventTypeMessage:
+			event_json, _ := json.Marshal(&event)
+			fmt.Println(string(event_json))
+
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
-				r.handleText(message, event.ReplyToken, event.Source.UserID)
+				// r.handleText(message, event.ReplyToken, event.Source.UserID)
+				event_json, _ := json.Marshal(&event)
+				fmt.Println(string(event_json), message)
+				message_text := message.Text
+				if message_text == "test" {
+					fmt.Println("this is test message")
+					r.handleFlex(Create_contents("test message"), event.ReplyToken, event.Source.UserID)
+				}
+				r.handleFlex(Create_contents("insert"), event.ReplyToken, event.Source.UserID)
 			}
 		}
 	}
