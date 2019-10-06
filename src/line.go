@@ -58,16 +58,18 @@ func (r *Line) EventRouter(eve []*linebot.Event) {
 
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
-				// r.handleText(message, event.ReplyToken, event.Source.UserID)
 				event_json, _ := json.Marshal(&event)
 				fmt.Println(string(event_json), message)
 				message_text := message.Text
-				if message_text == "test" {
-					fmt.Println("this is test message")
-					r.handleFlex(Create_contents("test message"), event.ReplyToken, event.Source.UserID)
-				}
-				r.handleFlex(Create_contents("insert"), event.ReplyToken, event.Source.UserID)
+				replyText := MessageRouter(message_text)
+				r.handleFlex(CreateBaseContents(replyText), event.ReplyToken, event.Source.UserID)
 			}
+		case linebot.EventTypePostback:
+			event_json, _ := json.Marshal(&event)
+			fmt.Println(string(event_json))
+			eventData := event.Postback.Data
+			replyContents := PostbackRouter(eventData)
+			r.SendTextMessage(replyContents, event.ReplyToken)
 		}
 	}
 }
