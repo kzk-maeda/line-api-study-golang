@@ -40,9 +40,7 @@ func CreateQuestion() string {
 		),
 	}
 	actionComponents := []ActionComponent{selection1, selection2}
-
 	buttonContents := createButtonContents(actionComponents)
-
 	contents := createBaseContents(question_text, buttonContents)
 
 	return contents
