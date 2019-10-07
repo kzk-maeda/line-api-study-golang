@@ -5,35 +5,83 @@ import (
 	"fmt"
 )
 
-type ButtonContentsItems struct {
-	LabelText    string
-	DataText     string
-	NextQuestion string
+type ActionComponent struct {
+	Label string `json:"label"`
+	Data string `json:"data"`
 }
 
-type ButtonActionComponent struct {
-	Type        string
-	Label       string
-	Data        string
-	DisplayText string
+type ButtonAction struct {
+	Type string `json:"type"`
+	Label string `json:"label"`
+	Data string `json:"data"`
+	DisplayText string `json:"displayText"`
 }
 
-type ButtonComponent struct {
-	Type   string
-	Style  string
-	Action map[string]ButtonActionComponent
+type ButtonContent struct {
+	Type string `json:"type"`
+	Style string `json:"style"`
+	Action ButtonAction `json:"action"`
 }
 
-func createButtonComponents(question_label string, button_contents_items ButtonContentsItems) []ButtonComponent {
-	buttonComponent1 := ButtonComponent{}
-	buttonComponent2 := ButtonComponent{}
-	buttonComponent := []ButtonComponent{buttonComponent1, buttonComponent2}
+// Public Methods
+func CreateQuestion() string {
+	question_text := "Question No 1"
+	
+	selection1 := ActionComponent{
+		Label:"selection1",
+		Data:createAnswerData(
+			"question_no_1", "selection1", "2-1",
+		),
+	}
+	selection2 := ActionComponent{
+		Label:"selection2",
+		Data:createAnswerData(
+			"question_no_1", "selection2", "3-1",
+		),
+	}
+	actionComponents := []ActionComponent{selection1, selection2}
 
-	return buttonComponent
+	buttonContents := createButtonContents(actionComponents)
+
+	contents := createBaseContents(question_text, buttonContents)
+
+	return contents
+}
+
+
+// Private Methods
+
+func createButtonContents(actionComponents []ActionComponent) []ButtonContent {
+	buttonContents := []ButtonContent{}
+	for _, actionComponent := range actionComponents {
+		buttonContent := ButtonContent{}
+		buttonAction := ButtonAction{}
+
+		buttonContent.Type = "button"
+		buttonContent.Style = "primary"
+
+		buttonAction.Type = "postback"
+		buttonAction.Label = actionComponent.Label
+		buttonAction.Data = actionComponent.Data
+		buttonAction.DisplayText = actionComponent.Label
+
+		buttonContent.Action = buttonAction
+
+		buttonContents = append(buttonContents, buttonContent)
+	}
+
+	return buttonContents
+}
+
+func createAnswerData(question string, answer string, next_question string) string {
+	data_string := "question=" + question +
+								 "&answer=" + answer +
+								 "&next_question=" + next_question
+	return data_string
 }
 
 // JSONのBaseコンテンツを生成する関数
-func CreateBaseContents(h_text string) string {
+func createBaseContents(question_text string, contents []ButtonContent) string {
 	map_flex_contents := map[string]interface{}{
 		"type": "bubble",
 		"header": map[string]interface{}{
@@ -42,7 +90,7 @@ func CreateBaseContents(h_text string) string {
 			"contents": []interface{}{
 				map[string]interface{}{
 					"type":    "text",
-					"text":    h_text,
+					"text":    question_text,
 					"color":   "#ffffff",
 					"align":   "start",
 					"size":    "md",
@@ -62,29 +110,7 @@ func CreateBaseContents(h_text string) string {
 					"type":    "box",
 					"layout":  "vertical",
 					"spacing": "md",
-					"contents": []interface{}{
-						map[string]interface{}{
-							"type":  "button",
-							"style": "primary",
-							"action": map[string]interface{}{
-								"type":        "postback",
-								"label":       "answer 1",
-								"data":        "question=q1&answer=a1&next_question=q2",
-								"displayText": "answer 1",
-							},
-						},
-						map[string]interface{}{
-							"type":  "button",
-							"style": "primary",
-							"action": map[string]interface{}{
-								"type":        "postback",
-								"label":       "answer 2",
-								"data":        "question=q1&answer=a2&next_question=q2",
-								"displayText": "answer 2",
-							},
-						},
-					},
-					// "contents": createButtonComponents("test question")
+					"contents": contents,
 					"flex": 1,
 				},
 			},
