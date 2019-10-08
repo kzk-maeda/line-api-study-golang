@@ -60,7 +60,7 @@ func (r *Line) EventRouter(eve []*linebot.Event) {
 			case *linebot.TextMessage:
 				event_json, _ := json.Marshal(&event)
 				fmt.Println(string(event_json), message)
-				r.handleFlex(CreateQuestion(), event.ReplyToken, event.Source.UserID)
+				r.handleFlex(CreateQuestion("dmy"), event.ReplyToken, event.Source.UserID)
 			}
 		case linebot.EventTypePostback:
 			event_json, _ := json.Marshal(&event)

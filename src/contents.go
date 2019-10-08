@@ -24,22 +24,54 @@ type ButtonContent struct {
 }
 
 // Public Methods
-func CreateQuestion() string {
-	question_text := "Question No 1"
+func CreateQuestion(next_question string) string {
+	// define
+	question_text := "Question Default"
+	actionComponents := []ActionComponent{
+		ActionComponent{
+			Label:"selection1",
+			Data:createAnswerData(
+				"question_no_deefault", "selection_default", "2-1",
+			),
+		}, 
+	}
+
+	// each contents
+	switch next_question {
+	case "1":
+		question_text = "Question No 1"
+		actionComponents = []ActionComponent{
+			ActionComponent{
+				Label:"selection1",
+				Data:createAnswerData(
+					"question_no_1", "selection1", "2-1",
+				),
+			}, 
+			ActionComponent{
+				Label:"selection2",
+				Data:createAnswerData(
+					"question_no_1", "selection2", "3-1",
+				),
+			},
+		}
+	case "2":
+		question_text = "Question No 2"
+		actionComponents = []ActionComponent{
+			ActionComponent{
+				Label:"selection1",
+				Data:createAnswerData(
+					"question_no_2", "selection1", "2-1",
+				),
+			}, 
+			ActionComponent{
+				Label:"selection2",
+				Data:createAnswerData(
+					"question_no_2", "selection2", "3-1",
+				),
+			},
+		}
+	}
 	
-	selection1 := ActionComponent{
-		Label:"selection1",
-		Data:createAnswerData(
-			"question_no_1", "selection1", "2-1",
-		),
-	}
-	selection2 := ActionComponent{
-		Label:"selection2",
-		Data:createAnswerData(
-			"question_no_1", "selection2", "3-1",
-		),
-	}
-	actionComponents := []ActionComponent{selection1, selection2}
 	buttonContents := createButtonContents(actionComponents)
 	contents := createBaseContents(question_text, buttonContents)
 
