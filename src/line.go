@@ -52,7 +52,7 @@ func (l *Line) New(secret, token string) error {
 func (r *Line) EventRouter(eve []*linebot.Event) {
 	for _, event := range eve {
 		switch event.Type {
-		case linebot.EventTypeMessage:
+		case linebot.EventTypeMessage: // MessageEventを受け取ったとき（初回と値入力）
 			event_json, _ := json.Marshal(&event)
 			fmt.Println(string(event_json))
 
@@ -62,7 +62,7 @@ func (r *Line) EventRouter(eve []*linebot.Event) {
 				fmt.Println(string(event_json), message)
 				r.handleFlex(CreateQuestion("dmy"), event.ReplyToken, event.Source.UserID)
 			}
-		case linebot.EventTypePostback:
+		case linebot.EventTypePostback: // PostbackEventを受け取ったとき（選択肢に対する回答）
 			event_json, _ := json.Marshal(&event)
 			fmt.Println(string(event_json))
 			eventData := event.Postback.Data
