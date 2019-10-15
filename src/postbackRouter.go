@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
+	"./repository"
 )
 
 type PostbackData struct {
@@ -37,6 +38,8 @@ func initializePostbackData(postbackData string) PostbackData {
 			return_data.NexQuestion = value
 		}
 	}
+
+	repository.TestCall()
 
 	return return_data
 }
