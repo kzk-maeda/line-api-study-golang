@@ -1,9 +1,9 @@
-package main
+package router
 
 import (
 	"fmt"
 	"strings"
-	"./repository"
+	"router/repository"
 )
 
 type PostbackData struct {

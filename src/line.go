@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"router"
+
 	"github.com/line/line-bot-sdk-go/linebot"
 )
 
@@ -60,11 +62,14 @@ func (r *Line) EventRouter(eve []*linebot.Event) {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
 				fmt.Println(string(event_json), message)
-				r.handleFlex(CreateQuestion("dmy"), event.ReplyToken, event.Source.UserID)
+				replyContents := CreateQuestion("dmy")
+				r.handleFlex(replyContents, event.ReplyToken, event.Source.UserID)
 			}
+			// TODO: error handling
+
 		case linebot.EventTypePostback: // PostbackEventを受け取ったとき（選択肢に対する回答）
 			eventData := event.Postback.Data
-			replyContents := PostbackRouter(eventData)
+			replyContents := router.PostbackRouter(eventData)
 			r.SendTextMessage(replyContents, event.ReplyToken)
 		}
 	}
