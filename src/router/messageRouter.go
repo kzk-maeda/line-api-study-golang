@@ -2,17 +2,22 @@ package router
 
 import (
 	"fmt"
+	"router/view"
+	"router/session"
 )
 
 func MessageRouter(message_text string) string {
-	replyText := "default"
+	// session controll
+	session := session.SetSession("user_id")
+	fmt.Println(session.QuestionId)
+	replyText := view.CreateQuestion("default")
 	switch message_text {
 	case "test":
 		fmt.Println("this is test message")
-		replyText = "test message from router"
+		replyText = view.CreateQuestion("1")
 	case "test2":
 		fmt.Println("this is test message2")
-		replyText = "test message2 from router"
+		replyText = view.CreateQuestion("2")
 	}
 	return replyText
 }

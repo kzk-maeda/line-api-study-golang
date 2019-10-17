@@ -62,16 +62,15 @@ func (r *Line) EventRouter(eve []*linebot.Event) {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
 				fmt.Println(string(event_json), message)
-				replyContents := CreateQuestion("dmy")
-				r.handleFlex(replyContents, event.ReplyToken, event.Source.UserID)
+				replyContents := router.MessageRouter("message")
 			}
 			// TODO: error handling
 
 		case linebot.EventTypePostback: // PostbackEventを受け取ったとき（選択肢に対する回答）
 			eventData := event.Postback.Data
 			replyContents := router.PostbackRouter(eventData)
-			r.SendTextMessage(replyContents, event.ReplyToken)
 		}
+		r.handleFlex(replyContents, event.ReplyToken, event.Source.UserID)
 	}
 }
 

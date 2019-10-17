@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strings"
 	"router/repository"
+	"router/view"
 )
 
 type PostbackData struct {
@@ -13,9 +14,10 @@ type PostbackData struct {
 }
 
 func PostbackRouter(postbackData string) string {
-	data := initializePostbackData(postbackData)
+	// data := initializePostbackData(postbackData)
+	replyText := view.CreateQuestion("1")
 
-	return data.NexQuestion
+	return replyText
 }
 
 // postback.dataをsplitしてObject化

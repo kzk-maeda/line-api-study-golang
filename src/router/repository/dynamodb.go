@@ -30,7 +30,7 @@ func TestCall()  {
 
 func initialize() dynamo.Table {
 	ddb := dynamo.New(session.New())
-	table := ddb.Table("Test")
+	table := ddb.Table("data_table")
 
 	return table
 }
