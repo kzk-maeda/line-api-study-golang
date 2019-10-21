@@ -2,7 +2,7 @@ package view
 
 import (
 	"encoding/json"
-	"fmt"
+	// "fmt"
 )
 
 type ActionComponent struct {
@@ -75,6 +75,8 @@ func CreateQuestion(next_question string) string {
 	buttonContents := createButtonContents(actionComponents)
 	contents := createBaseContents(question_text, buttonContents)
 
+	// fmt.Println("Send FlexMessage as Below.")
+	// fmt.Println(contents)
 	return contents
 }
 
@@ -88,7 +90,7 @@ func createButtonContents(actionComponents []ActionComponent) []ButtonContent {
 		buttonAction := ButtonAction{}
 
 		buttonContent.Type = "button"
-		buttonContent.Style = "primary"
+		buttonContent.Style = "secondary"
 
 		buttonAction.Type = "postback"
 		buttonAction.Label = actionComponent.Label
@@ -121,13 +123,35 @@ func createBaseContents(question_text string, contents []ButtonContent) string {
 				map[string]interface{}{
 					"type":    "text",
 					"text":    question_text,
-					"color":   "#ffffff",
+					// "color":   "#ffffff",
 					"align":   "start",
 					"size":    "md",
 					"gravity": "center",
+					"wrap": true,
+				},
+				map[string]interface{}{
+					"type": "box",
+					"layout": "vertical",
+					"contents": []interface{}{
+						map[string]interface{}{
+							"type": "box",
+							"layout": "vertical",
+							"contents": []interface{}{
+								map[string]interface{}{
+									"type": "filler",
+								},
+							},
+							"width": "10%",
+							"backgroundColor": "#f0f0f0",
+							"height": "6px",
+						},
+					},
+					"backgroundColor": "#9FD8E36E",
+					"height": "6px",
+					"margin": "sm",
 				},
 			},
-			"backgroundColor": "#27ACB2",
+			"backgroundColor": "#DE5658",
 			"paddingTop":      "19px",
 			"paddingAll":      "12px",
 			"paddingBottom":   "16px",
@@ -155,7 +179,7 @@ func createBaseContents(question_text string, contents []ButtonContent) string {
 	}
 	json_flex_contents, _ := json.Marshal(map_flex_contents)
 	flex_contents := string(json_flex_contents)
-	fmt.Println(flex_contents)
+	// fmt.Println(flex_contents)
 
 	return flex_contents
 }

@@ -20,10 +20,15 @@ func (r *Line) SendTextMessage(message string, replyToken string) error {
 }
 
 func (r *Line) SendFlexMessage(altText string, jsonString string, replyToken string) error {
+	fmt.Println(jsonString)
 	contents, err := linebot.UnmarshalFlexMessageJSON([]byte(jsonString))
 	if err != nil {
+		fmt.Println("FlexMessage Syntax Error")
+		fmt.Println(err)
 		return err
 	}
+	fmt.Println("Send FlexMessage as Below.")
+	// fmt.Println(string(contents))
 	return r.Reply(replyToken, linebot.NewFlexMessage(altText, contents))
 }
 
@@ -81,7 +86,7 @@ func (r *Line) handleText(message *linebot.TextMessage, replyToken, userID strin
 	r.SendTextMessage(message.Text, replyToken)
 }
 
-func (r *Line) handleFlex(contents string, replyToken, userID string) {
+func (r *Line) handleFlex(contents, replyToken, userID string) {
 	altText := "this is alt text"
 	r.SendFlexMessage(altText, contents, replyToken)
 }
