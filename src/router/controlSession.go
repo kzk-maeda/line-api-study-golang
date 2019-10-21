@@ -9,7 +9,7 @@ func controlSession(user_id string, next_question string) (session.Session, erro
 	// SessionTableから対象userIdのSessionを取得
 	user_session, err := session.GetSession(user_id)
 	fmt.Println("Session : ", user_session, " Error : ", err)
-	
+
 	// まだSessionレコードがない場合、新たにSessionを生成
 	if err != nil {
 		user_session, err = session.SetSession(user_id)
