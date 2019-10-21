@@ -46,9 +46,9 @@ func controlTextSession(user_id string) (session.Session, error) {
 	case "3-2":
 		next_question_id = "3-3"
 	case "3-3":
-		next_question_id = "4-1"
+		next_question_id = "4"
 	case "6-6":
-		next_question_id = "7-1"
+		next_question_id = "6-7"
 	default:
 		next_question_id = "1"
 	}

@@ -29,6 +29,7 @@ func createTextContents(component string) interface{} {
 			map[string]interface{}{
 				"type": "text",
 				"text": component,
+				"wrap": true,
 			},
 		},	
 	}
