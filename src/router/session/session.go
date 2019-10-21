@@ -67,3 +67,10 @@ func init() {
 
 	return
 }
+
+func DeleteSession(user_id string) {
+	err := SessionTable.Delete("user_id", user_id).Run()
+	if err != nil {
+		fmt.Println(err)
+	}
+}

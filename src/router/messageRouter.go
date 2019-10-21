@@ -9,6 +9,10 @@ import (
 
 func MessageRouter(user_id string, message_text string) string {
 	replyText := view.CreateQuestion("default")
+	// 診断ツールのスタート："診断スタート"を受け取ると無条件で初期状態にする
+	if message_text == "診断スタート" {
+		session.DeleteSession(user_id)
+	}
 	// TODO: Validation
 
 	// 今の質問番号をSessionから取得
