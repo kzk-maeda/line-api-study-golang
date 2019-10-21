@@ -26,7 +26,7 @@ func CreateQuestion(next_question string) string {
 		ActionComponent{
 			Label:"selection1",
 			Data:createAnswerData(
-				"question_no_deefault", "selection_default", "2-1",
+				"deefault", "selection_default", "2-1",
 			),
 		}, 
 	}
@@ -42,13 +42,13 @@ func CreateQuestion(next_question string) string {
 			ActionComponent{
 				Label:"はい",
 				Data:createAnswerData(
-					"question_no_1", "yes", "2-1",
+					"1", "yes", "2-1",
 				),
 			}, 
 			ActionComponent{
 				Label:"いいえ",
 				Data:createAnswerData(
-					"question_no_1", "no", "3-1",
+					"1", "no", "3-1",
 				),
 			},
 		}
@@ -60,31 +60,31 @@ func CreateQuestion(next_question string) string {
 			ActionComponent{
 				Label:"1年以内",
 				Data:createAnswerData(
-					"question_no_2-1", "1", "2-2",
+					"2-1", "1", "2-2",
 				),
 			}, 
 			ActionComponent{
 				Label:"2年以内",
 				Data:createAnswerData(
-					"question_no_2-1", "2", "2-2",
+					"2-1", "2", "2-2",
 				),
 			},
 			ActionComponent{
 				Label:"3-4年",
 				Data:createAnswerData(
-					"question_no_2-1", "3-4", "2-2",
+					"2-1", "3-4", "2-2",
 				),
 			},
 			ActionComponent{
 				Label:"5-6年",
 				Data:createAnswerData(
-					"question_no_2-1", "5-6", "2-2",
+					"2-1", "5-6", "2-2",
 				),
 			},
 			ActionComponent{
 				Label:"7年以上",
 				Data:createAnswerData(
-					"question_no_2-1", "7", "2-2",
+					"2-1", "7", "2-2",
 				),
 			},
 		}
@@ -96,13 +96,13 @@ func CreateQuestion(next_question string) string {
 			ActionComponent{
 				Label:"はい",
 				Data:createAnswerData(
-					"question_no_2-2", "yes", "2-3",
+					"2-2", "yes", "2-3",
 				),
 			},
 			ActionComponent{
 				Label:"いいえ",
 				Data:createAnswerData(
-					"question_no_2-2", "no", "2-3",
+					"2-2", "no", "2-3",
 				),
 			},
 		}
@@ -114,13 +114,13 @@ func CreateQuestion(next_question string) string {
 			ActionComponent{
 				Label:"はい",
 				Data:createAnswerData(
-					"question_no_2-3", "yes", "2-4",
+					"2-3", "yes", "2-4",
 				),
 			},
 			ActionComponent{
 				Label:"いいえ",
 				Data:createAnswerData(
-					"question_no_2-3", "no", "3-1",
+					"2-3", "no", "3-1",
 				),
 			},
 		}
@@ -131,31 +131,31 @@ func CreateQuestion(next_question string) string {
 			ActionComponent{
 				Label:"60％以上",
 				Data:createAnswerData(
-					"question_no_2-4", "60", "3-1",
+					"2-4", "60", "3-1",
 				),
 			},
 			ActionComponent{
 				Label:"40-59％",
 				Data:createAnswerData(
-					"question_no_2-4", "40-59", "3-1",
+					"2-4", "40-59", "3-1",
 				),
 			},
 			ActionComponent{
 				Label:"20-39％",
 				Data:createAnswerData(
-					"question_no_2-4", "20-39", "3-1",
+					"2-4", "20-39", "3-1",
 				),
 			},
 			ActionComponent{
 				Label:"0-19％",
 				Data:createAnswerData(
-					"question_no_2-4", "0-19", "3-1",
+					"2-4", "0-19", "3-1",
 				),
 			},
 			ActionComponent{
 				Label:"不明",
 				Data:createAnswerData(
-					"question_no_2-4", "unknown", "3-1",
+					"2-4", "unknown", "3-1",
 				),
 			},
 		}
@@ -178,13 +178,13 @@ func CreateQuestion(next_question string) string {
 			ActionComponent{
 				Label:"はい",
 				Data:createAnswerData(
-					"question_no_4", "yes", "5",
+					"4", "yes", "5",
 				),
 			},
 			ActionComponent{
 				Label:"いいえ",
 				Data:createAnswerData(
-					"question_no_4", "no", "6-1",
+					"4", "no", "6-1",
 				),
 			},
 		}
@@ -195,13 +195,13 @@ func CreateQuestion(next_question string) string {
 			ActionComponent{
 				Label:"はい",
 				Data:createAnswerData(
-					"question_no_5", "yes", "6-1",
+					"5", "yes", "6-1",
 				),
 			},
 			ActionComponent{
 				Label:"いいえ",
 				Data:createAnswerData(
-					"question_no_5", "no", "6-1",
+					"5", "no", "6-1",
 				),
 			},
 		}
@@ -212,13 +212,13 @@ func CreateQuestion(next_question string) string {
 			ActionComponent{
 				Label:"はい（26~35日周期）",
 				Data:createAnswerData(
-					"question_no_6-1", "yes", "6-2",
+					"6-1", "yes", "6-2",
 				),
 			},
 			ActionComponent{
 				Label:"いいえ",
 				Data:createAnswerData(
-					"question_no_6-1", "no", "6-2",
+					"6-1", "no", "6-2",
 				),
 			},
 		}
@@ -229,13 +229,13 @@ func CreateQuestion(next_question string) string {
 			ActionComponent{
 				Label:"はい",
 				Data:createAnswerData(
-					"question_no_6-2", "yes", "6-3",
+					"6-2", "yes", "6-3",
 				),
 			},
 			ActionComponent{
 				Label:"いいえ",
 				Data:createAnswerData(
-					"question_no_6-2", "no", "6-3",
+					"6-2", "no", "6-3",
 				),
 			},
 		}
@@ -246,13 +246,13 @@ func CreateQuestion(next_question string) string {
 			ActionComponent{
 				Label:"はい",
 				Data:createAnswerData(
-					"question_no_6-3", "yes", "6-4",
+					"6-3", "yes", "6-4",
 				),
 			},
 			ActionComponent{
 				Label:"いいえ",
 				Data:createAnswerData(
-					"question_no_6-3", "no", "6-4",
+					"6-3", "no", "6-4",
 				),
 			},
 		}
@@ -263,13 +263,13 @@ func CreateQuestion(next_question string) string {
 			ActionComponent{
 				Label:"１杯以上",
 				Data:createAnswerData(
-					"question_no_6-3", "more_1", "6-5",
+					"6-3", "more_1", "6-5",
 				),
 			},
 			ActionComponent{
 				Label:"１杯未満",
 				Data:createAnswerData(
-					"question_no_6-3", "less_1", "6-5",
+					"6-3", "less_1", "6-5",
 				),
 			},
 		}
@@ -280,13 +280,13 @@ func CreateQuestion(next_question string) string {
 			ActionComponent{
 				Label:"はい",
 				Data:createAnswerData(
-					"question_no_6-5", "yes", "6-6",
+					"6-5", "yes", "6-6",
 				),
 			},
 			ActionComponent{
 				Label:"いいえ",
 				Data:createAnswerData(
-					"question_no_6-5", "no", "6-7",
+					"6-5", "no", "6-7",
 				),
 			},
 		}
@@ -305,25 +305,25 @@ func CreateQuestion(next_question string) string {
 			ActionComponent{
 				Label:"➀",
 				Data:createAnswerData(
-					"question_no_6-7", "level_1", "7-1",
+					"6-7", "level_1", "7-1",
 				),
 			},
 			ActionComponent{
 				Label:"➁",
 				Data:createAnswerData(
-					"question_no_6-7", "level_2", "7-1",
+					"6-7", "level_2", "7-1",
 				),
 			},
 			ActionComponent{
 				Label:"➂",
 				Data:createAnswerData(
-					"question_no_6-7", "level_3", "7-1",
+					"6-7", "level_3", "7-1",
 				),
 			},
 			ActionComponent{
 				Label:"➃",
 				Data:createAnswerData(
-					"question_no_6-7", "level_0", "7-1",
+					"6-7", "level_0", "7-1",
 				),
 			},
 		}
@@ -334,13 +334,13 @@ func CreateQuestion(next_question string) string {
 			ActionComponent{
 				Label:"はい",
 				Data:createAnswerData(
-					"question_no_7-1", "yes", "7-2",
+					"7-1", "yes", "7-2",
 				),
 			},
 			ActionComponent{
 				Label:"いいえ",
 				Data:createAnswerData(
-					"question_no_7-1", "no", "7-2",
+					"7-1", "no", "7-2",
 				),
 			},
 		}
@@ -351,13 +351,13 @@ func CreateQuestion(next_question string) string {
 			ActionComponent{
 				Label:"はい",
 				Data:createAnswerData(
-					"question_no_7-2", "yes", "result",
+					"7-2", "yes", "result",
 				),
 			},
 			ActionComponent{
 				Label:"いいえ",
 				Data:createAnswerData(
-					"question_no_7-2", "no", "result",
+					"7-2", "no", "result",
 				),
 			},
 		}
@@ -370,7 +370,7 @@ func CreateQuestion(next_question string) string {
 			ActionComponent{
 				Label:"Label",
 				Data:createAnswerData(
-					"question_no_x", "answer", "next_question",
+					"x", "answer", "next_question",
 				),
 			},
 		}

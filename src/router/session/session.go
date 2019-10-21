@@ -17,10 +17,10 @@ type Session struct {
   CreatedTime time.Time `dynamo:"created_time"`
 }
 
-func SetSession(userId string) (Session, error) {
+func SetSession(user_id string) (Session, error) {
 	// 最初にSessionをSetするfunction
 	// table := initialize()
-	session := Session{UserId: userId, QuestionId: "1", CreatedTime: time.Now().UTC()}
+	session := Session{UserId: user_id, QuestionId: "1", CreatedTime: time.Now().UTC()}
 
 	err := SessionTable.Put(session).Run()
 	if err != nil {
@@ -31,12 +31,12 @@ func SetSession(userId string) (Session, error) {
 	return session, err
 }
 
-func GetSession(userId string) (Session, error) {
-	// userIdからSessionを取得するfunction
+func GetSession(user_id string) (Session, error) {
+	// user_idからSessionを取得するfunction
 	// table := initialize()
 	session := Session{}
 
-	err := SessionTable.Get("user_id", userId).One(&session)
+	err := SessionTable.Get("user_id", user_id).One(&session)
 	if err != nil {
 		fmt.Println(err)
 		// panic(err.Error())
@@ -45,19 +45,19 @@ func GetSession(userId string) (Session, error) {
 	return session, err
 }
 
-func UpdateSession(userId string, nextQuestionId string) (Session, error) {
+func UpdateSession(user_id string, next_question_id string) (Session, error) {
 	// Sessionを更新するfunction
 	// table := initialize()
 
-	err := SessionTable.Update("user_id", userId).
-		Set("question_id", nextQuestionId).
+	err := SessionTable.Update("user_id", user_id).
+		Set("question_id", next_question_id).
 		Set("created_time", time.Now().UTC()).
 		Run()
 	if err != nil {
 		fmt.Println(err)
 		// panic(err.Error())
 	}
-	session, err := GetSession(userId)
+	session, err := GetSession(user_id)
 	return session, err
 }
 

@@ -17,6 +17,9 @@ func PostbackRouter(user_id string, postbackData string) string {
 	data := initializePostbackData(postbackData)
 	controlSession(user_id, data.NextQuestion)
 
+	// 回答をTableに登録
+	repository.RegisterData(user_id, data.Question, "", data.Answer)
+
 	// SessionTableに登録されるNextQuestionとpostbackDataから得られるNextQuestionが同値なので、
 	// SessionTableからNextQuestionの値を取得する処理はスキップ
 	replyText := view.CreateQuestion(data.NextQuestion)
