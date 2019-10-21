@@ -163,6 +163,10 @@ func CreateQuestion(next_question string) string {
 		question_text = "現在何歳ですか？"
 		body_type = "text"
 		textComponent = "半角数字で入力してください"
+	case "3-2":
+		question_text = "身長は何cmですか？"
+		body_type = "text"
+		textComponent = "半角数字で入力してください"
 	
 	// default）
 	case "default":

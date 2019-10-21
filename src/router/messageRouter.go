@@ -1,21 +1,19 @@
 package router
 
 import (
-	"fmt"
+	// "fmt"
 	"router/view"
+	// "router/session"
 )
 
 func MessageRouter(user_id string, message_text string) string {
 	replyText := view.CreateQuestion("default")
-	switch message_text {
-	case "test":
-		fmt.Println("this is test message")
-		controlSession(user_id, "1")
-		replyText = view.CreateQuestion("1")
-	case "test2":
-		fmt.Println("this is test message2")
-		controlSession(user_id, "2")
-		replyText = view.CreateQuestion("2")
-	}
+	// 次の質問IDをSessionTableに格納
+	user_session, _ := controlTextSession(user_id)
+	// 次の質問IDを取得
+	next_question := user_session.QuestionId
+	// replyTextを生成
+	replyText = view.CreateQuestion(next_question)
+	
 	return replyText
 }

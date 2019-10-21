@@ -10,13 +10,16 @@ import (
 type PostbackData struct {
 	Question    string
 	Answer      string
-	NexQuestion string
+	NextQuestion string
 }
 
 func PostbackRouter(user_id string, postbackData string) string {
 	data := initializePostbackData(postbackData)
-	controlSession(user_id, data.NexQuestion)
-	replyText := view.CreateQuestion(data.NexQuestion)
+	controlSession(user_id, data.NextQuestion)
+
+	// SessionTableに登録されるNextQuestionとpostbackDataから得られるNextQuestionが同値なので、
+	// SessionTableからNextQuestionの値を取得する処理はスキップ
+	replyText := view.CreateQuestion(data.NextQuestion)
 
 	return replyText
 }
@@ -38,7 +41,7 @@ func initializePostbackData(postbackData string) PostbackData {
 		case "answer":
 			return_data.Answer = value
 		case "next_question":
-			return_data.NexQuestion = value
+			return_data.NextQuestion = value
 		}
 	}
 
