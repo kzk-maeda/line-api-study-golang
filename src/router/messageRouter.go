@@ -2,9 +2,9 @@ package router
 
 import (
 	// "fmt"
-	"router/view"
-	"router/session"
 	"router/repository"
+	"router/session"
+	"router/view"
 )
 
 func MessageRouter(user_id string, message_text string) string {
@@ -23,6 +23,6 @@ func MessageRouter(user_id string, message_text string) string {
 	next_question := user_session.QuestionId
 	// replyTextを生成
 	replyText = view.CreateQuestion(next_question)
-	
+
 	return replyText
 }

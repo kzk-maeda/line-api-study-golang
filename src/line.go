@@ -63,7 +63,7 @@ func (r *Line) EventRouter(eve []*linebot.Event) {
 		reply_token := event.ReplyToken
 		replyContents := ""
 		fmt.Println(string(event_json))
-		
+
 		switch event.Type {
 		case linebot.EventTypeMessage: // MessageEventを受け取ったとき（初回と値入力）
 

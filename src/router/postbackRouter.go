@@ -2,14 +2,14 @@ package router
 
 import (
 	"fmt"
-	"strings"
 	"router/repository"
 	"router/view"
+	"strings"
 )
 
 type PostbackData struct {
-	Question    string
-	Answer      string
+	Question     string
+	Answer       string
 	NextQuestion string
 }
 

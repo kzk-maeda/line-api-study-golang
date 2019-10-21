@@ -12,9 +12,9 @@ import (
 var SessionTable dynamo.Table
 
 type Session struct {
-	UserId string `dynamo:"user_id"`
-	QuestionId string `dynamo:"question_id"`
-  CreatedTime time.Time `dynamo:"created_time"`
+	UserId      string    `dynamo:"user_id"`
+	QuestionId  string    `dynamo:"question_id"`
+	CreatedTime time.Time `dynamo:"created_time"`
 }
 
 func SetSession(user_id string) (Session, error) {

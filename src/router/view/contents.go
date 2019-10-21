@@ -1,19 +1,19 @@
 package view
 
 import (
-	// "encoding/json"
-	// "fmt"
+// "encoding/json"
+// "fmt"
 )
 
 type ActionComponent struct {
 	Label string `json:"label"`
-	Data string `json:"data"`
+	Data  string `json:"data"`
 }
 
 type ButtonAction struct {
-	Type string `json:"type"`
-	Label string `json:"label"`
-	Data string `json:"data"`
+	Type        string `json:"type"`
+	Label       string `json:"label"`
+	Data        string `json:"data"`
 	DisplayText string `json:"displayText"`
 }
 
@@ -24,11 +24,11 @@ func CreateQuestion(next_question string) string {
 	body_type := "button"
 	actionComponents := []ActionComponent{
 		ActionComponent{
-			Label:"selection1",
-			Data:createAnswerData(
+			Label: "selection1",
+			Data: createAnswerData(
 				"deefault", "selection_default", "2-1",
 			),
-		}, 
+		},
 	}
 	textComponent := "textComponent"
 
@@ -40,14 +40,14 @@ func CreateQuestion(next_question string) string {
 		body_type = "button"
 		actionComponents = []ActionComponent{
 			ActionComponent{
-				Label:"はい",
-				Data:createAnswerData(
+				Label: "はい",
+				Data: createAnswerData(
 					"1", "yes", "2-1",
 				),
-			}, 
+			},
 			ActionComponent{
-				Label:"いいえ",
-				Data:createAnswerData(
+				Label: "いいえ",
+				Data: createAnswerData(
 					"1", "no", "3-1",
 				),
 			},
@@ -58,32 +58,32 @@ func CreateQuestion(next_question string) string {
 		body_type = "button"
 		actionComponents = []ActionComponent{
 			ActionComponent{
-				Label:"1年以内",
-				Data:createAnswerData(
+				Label: "1年以内",
+				Data: createAnswerData(
 					"2-1", "1", "2-2",
 				),
-			}, 
+			},
 			ActionComponent{
-				Label:"2年以内",
-				Data:createAnswerData(
+				Label: "2年以内",
+				Data: createAnswerData(
 					"2-1", "2", "2-2",
 				),
 			},
 			ActionComponent{
-				Label:"3-4年",
-				Data:createAnswerData(
+				Label: "3-4年",
+				Data: createAnswerData(
 					"2-1", "3-4", "2-2",
 				),
 			},
 			ActionComponent{
-				Label:"5-6年",
-				Data:createAnswerData(
+				Label: "5-6年",
+				Data: createAnswerData(
 					"2-1", "5-6", "2-2",
 				),
 			},
 			ActionComponent{
-				Label:"7年以上",
-				Data:createAnswerData(
+				Label: "7年以上",
+				Data: createAnswerData(
 					"2-1", "7", "2-2",
 				),
 			},
@@ -94,14 +94,14 @@ func CreateQuestion(next_question string) string {
 		body_type = "button"
 		actionComponents = []ActionComponent{
 			ActionComponent{
-				Label:"はい",
-				Data:createAnswerData(
+				Label: "はい",
+				Data: createAnswerData(
 					"2-2", "yes", "2-3",
 				),
 			},
 			ActionComponent{
-				Label:"いいえ",
-				Data:createAnswerData(
+				Label: "いいえ",
+				Data: createAnswerData(
 					"2-2", "no", "2-3",
 				),
 			},
@@ -112,14 +112,14 @@ func CreateQuestion(next_question string) string {
 		body_type = "button"
 		actionComponents = []ActionComponent{
 			ActionComponent{
-				Label:"はい",
-				Data:createAnswerData(
+				Label: "はい",
+				Data: createAnswerData(
 					"2-3", "yes", "2-4",
 				),
 			},
 			ActionComponent{
-				Label:"いいえ",
-				Data:createAnswerData(
+				Label: "いいえ",
+				Data: createAnswerData(
 					"2-3", "no", "3-1",
 				),
 			},
@@ -129,32 +129,32 @@ func CreateQuestion(next_question string) string {
 		body_type = "button"
 		actionComponents = []ActionComponent{
 			ActionComponent{
-				Label:"60％以上",
-				Data:createAnswerData(
+				Label: "60％以上",
+				Data: createAnswerData(
 					"2-4", "60", "3-1",
 				),
 			},
 			ActionComponent{
-				Label:"40-59％",
-				Data:createAnswerData(
+				Label: "40-59％",
+				Data: createAnswerData(
 					"2-4", "40-59", "3-1",
 				),
 			},
 			ActionComponent{
-				Label:"20-39％",
-				Data:createAnswerData(
+				Label: "20-39％",
+				Data: createAnswerData(
 					"2-4", "20-39", "3-1",
 				),
 			},
 			ActionComponent{
-				Label:"0-19％",
-				Data:createAnswerData(
+				Label: "0-19％",
+				Data: createAnswerData(
 					"2-4", "0-19", "3-1",
 				),
 			},
 			ActionComponent{
-				Label:"不明",
-				Data:createAnswerData(
+				Label: "不明",
+				Data: createAnswerData(
 					"2-4", "unknown", "3-1",
 				),
 			},
@@ -176,14 +176,14 @@ func CreateQuestion(next_question string) string {
 		body_type = "button"
 		actionComponents = []ActionComponent{
 			ActionComponent{
-				Label:"はい",
-				Data:createAnswerData(
+				Label: "はい",
+				Data: createAnswerData(
 					"4", "yes", "5",
 				),
 			},
 			ActionComponent{
-				Label:"いいえ",
-				Data:createAnswerData(
+				Label: "いいえ",
+				Data: createAnswerData(
 					"4", "no", "6-1",
 				),
 			},
@@ -193,14 +193,14 @@ func CreateQuestion(next_question string) string {
 		body_type = "button"
 		actionComponents = []ActionComponent{
 			ActionComponent{
-				Label:"はい",
-				Data:createAnswerData(
+				Label: "はい",
+				Data: createAnswerData(
 					"5", "yes", "6-1",
 				),
 			},
 			ActionComponent{
-				Label:"いいえ",
-				Data:createAnswerData(
+				Label: "いいえ",
+				Data: createAnswerData(
 					"5", "no", "6-1",
 				),
 			},
@@ -210,14 +210,14 @@ func CreateQuestion(next_question string) string {
 		body_type = "button"
 		actionComponents = []ActionComponent{
 			ActionComponent{
-				Label:"はい（26~35日周期）",
-				Data:createAnswerData(
+				Label: "はい（26~35日周期）",
+				Data: createAnswerData(
 					"6-1", "yes", "6-2",
 				),
 			},
 			ActionComponent{
-				Label:"いいえ",
-				Data:createAnswerData(
+				Label: "いいえ",
+				Data: createAnswerData(
 					"6-1", "no", "6-2",
 				),
 			},
@@ -227,14 +227,14 @@ func CreateQuestion(next_question string) string {
 		body_type = "button"
 		actionComponents = []ActionComponent{
 			ActionComponent{
-				Label:"はい",
-				Data:createAnswerData(
+				Label: "はい",
+				Data: createAnswerData(
 					"6-2", "yes", "6-3",
 				),
 			},
 			ActionComponent{
-				Label:"いいえ",
-				Data:createAnswerData(
+				Label: "いいえ",
+				Data: createAnswerData(
 					"6-2", "no", "6-3",
 				),
 			},
@@ -244,14 +244,14 @@ func CreateQuestion(next_question string) string {
 		body_type = "button"
 		actionComponents = []ActionComponent{
 			ActionComponent{
-				Label:"はい",
-				Data:createAnswerData(
+				Label: "はい",
+				Data: createAnswerData(
 					"6-3", "yes", "6-4",
 				),
 			},
 			ActionComponent{
-				Label:"いいえ",
-				Data:createAnswerData(
+				Label: "いいえ",
+				Data: createAnswerData(
 					"6-3", "no", "6-4",
 				),
 			},
@@ -261,14 +261,14 @@ func CreateQuestion(next_question string) string {
 		body_type = "button"
 		actionComponents = []ActionComponent{
 			ActionComponent{
-				Label:"１杯以上",
-				Data:createAnswerData(
+				Label: "１杯以上",
+				Data: createAnswerData(
 					"6-3", "more_1", "6-5",
 				),
 			},
 			ActionComponent{
-				Label:"１杯未満",
-				Data:createAnswerData(
+				Label: "１杯未満",
+				Data: createAnswerData(
 					"6-3", "less_1", "6-5",
 				),
 			},
@@ -278,14 +278,14 @@ func CreateQuestion(next_question string) string {
 		body_type = "button"
 		actionComponents = []ActionComponent{
 			ActionComponent{
-				Label:"はい",
-				Data:createAnswerData(
+				Label: "はい",
+				Data: createAnswerData(
 					"6-5", "yes", "6-6",
 				),
 			},
 			ActionComponent{
-				Label:"いいえ",
-				Data:createAnswerData(
+				Label: "いいえ",
+				Data: createAnswerData(
 					"6-5", "no", "6-7",
 				),
 			},
@@ -303,26 +303,26 @@ func CreateQuestion(next_question string) string {
 		body_type = "button"
 		actionComponents = []ActionComponent{
 			ActionComponent{
-				Label:"➀",
-				Data:createAnswerData(
+				Label: "➀",
+				Data: createAnswerData(
 					"6-7", "level_1", "7-1",
 				),
 			},
 			ActionComponent{
-				Label:"➁",
-				Data:createAnswerData(
+				Label: "➁",
+				Data: createAnswerData(
 					"6-7", "level_2", "7-1",
 				),
 			},
 			ActionComponent{
-				Label:"➂",
-				Data:createAnswerData(
+				Label: "➂",
+				Data: createAnswerData(
 					"6-7", "level_3", "7-1",
 				),
 			},
 			ActionComponent{
-				Label:"➃",
-				Data:createAnswerData(
+				Label: "➃",
+				Data: createAnswerData(
 					"6-7", "level_0", "7-1",
 				),
 			},
@@ -332,14 +332,14 @@ func CreateQuestion(next_question string) string {
 		body_type = "button"
 		actionComponents = []ActionComponent{
 			ActionComponent{
-				Label:"はい",
-				Data:createAnswerData(
+				Label: "はい",
+				Data: createAnswerData(
 					"7-1", "yes", "7-2",
 				),
 			},
 			ActionComponent{
-				Label:"いいえ",
-				Data:createAnswerData(
+				Label: "いいえ",
+				Data: createAnswerData(
 					"7-1", "no", "7-2",
 				),
 			},
@@ -349,14 +349,14 @@ func CreateQuestion(next_question string) string {
 		body_type = "button"
 		actionComponents = []ActionComponent{
 			ActionComponent{
-				Label:"はい",
-				Data:createAnswerData(
+				Label: "はい",
+				Data: createAnswerData(
 					"7-2", "yes", "result",
 				),
 			},
 			ActionComponent{
-				Label:"いいえ",
-				Data:createAnswerData(
+				Label: "いいえ",
+				Data: createAnswerData(
 					"7-2", "no", "result",
 				),
 			},
@@ -368,16 +368,16 @@ func CreateQuestion(next_question string) string {
 		body_type = "button"
 		actionComponents = []ActionComponent{
 			ActionComponent{
-				Label:"Label",
-				Data:createAnswerData(
+				Label: "Label",
+				Data: createAnswerData(
 					"x", "answer", "next_question",
 				),
 			},
 		}
 		textComponent = "textComponent"
-	// from here
+		// from here
 	}
-	
+
 	contents := ""
 	switch body_type {
 	case "button":

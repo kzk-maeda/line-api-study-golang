@@ -13,15 +13,15 @@ var DataTable dynamo.Table
 
 type Answer struct {
 	// QuestionNo string `dynamo:"question_no,omitempty"`
-	Description string `dynamo:"description,omitempty"`
-	Answer string `dynamo:"answer,omitempty"`
+	Description string    `dynamo:"description,omitempty"`
+	Answer      string    `dynamo:"answer,omitempty"`
 	UpdatedTime time.Time `dynamo:"updated_time,omitempty"`
 }
 
 type User struct {
-	UserId string `dynamo:"user_id"`
-	Answers map[string]*Answer `dynamo:"answers,omitempty"`
-  CreatedTime time.Time `dynamo:"created_time"`
+	UserId      string             `dynamo:"user_id"`
+	Answers     map[string]*Answer `dynamo:"answers,omitempty"`
+	CreatedTime time.Time          `dynamo:"created_time"`
 }
 
 func RegisterData(user_id string, question_no string, description string, answer string) (User, error) {
@@ -53,7 +53,7 @@ func updateData(user_id string, question_no string, description string, answer s
 	answer_rec := &Answer{
 		// QuestionNo: question_no,
 		Description: description,
-		Answer: answer,
+		Answer:      answer,
 		UpdatedTime: time.Now().UTC(),
 	}
 	// Answersカラムが存在しない場合、作成して定義した構造体を追加
@@ -61,9 +61,9 @@ func updateData(user_id string, question_no string, description string, answer s
 	answer_map := map[string]*Answer{}
 	if data.Answers != nil {
 		answer_map = data.Answers
-	} 
+	}
 	answer_map[question_no] = answer_rec
-	
+
 	// DDBにはQuestionNoをキーとした構造体を格納
 	qerr := DataTable.Update("user_id", user_id).
 		Set("answers", answer_map).
@@ -86,16 +86,16 @@ func getData(user_id string) (User, error) {
 	return data, err
 }
 
-func TestCall()  {
+func TestCall() {
 	fmt.Println("test")
 
 	u := User{UserId: "3", CreatedTime: time.Now().UTC()}
 	fmt.Println(u)
 
 	if err := DataTable.Put(u).Run(); err != nil {
-    fmt.Println("err")
-    panic(err.Error())
-  }
+		fmt.Println("err")
+		panic(err.Error())
+	}
 
 }
 

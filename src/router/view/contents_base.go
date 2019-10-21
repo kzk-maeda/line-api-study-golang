@@ -5,8 +5,8 @@ import (
 )
 
 type ButtonContent struct {
-	Type string `json:"type"`
-	Style string `json:"style"`
+	Type   string       `json:"type"`
+	Style  string       `json:"style"`
 	Action ButtonAction `json:"action"`
 }
 
@@ -21,8 +21,8 @@ func createTextContents(component string) interface{} {
 	// textContent.Text = component
 
 	body_content := map[string]interface{}{
-		"type":   "box",
-		"layout": "vertical",
+		"type":       "box",
+		"layout":     "vertical",
 		"spacing":    "md",
 		"paddingAll": "12px",
 		"contents": []interface{}{
@@ -31,7 +31,7 @@ func createTextContents(component string) interface{} {
 				"text": component,
 				"wrap": true,
 			},
-		},	
+		},
 	}
 
 	return body_content
@@ -61,11 +61,11 @@ func createButtonContents(actionComponents []ActionComponent) interface{} {
 		"layout": "vertical",
 		"contents": []interface{}{
 			map[string]interface{}{
-				"type":    "box",
-				"layout":  "vertical",
-				"spacing": "md",
+				"type":     "box",
+				"layout":   "vertical",
+				"spacing":  "md",
 				"contents": buttonContents,
-				"flex": 1,
+				"flex":     1,
 			},
 		},
 		"spacing":    "md",
@@ -77,8 +77,8 @@ func createButtonContents(actionComponents []ActionComponent) interface{} {
 
 func createAnswerData(question string, answer string, next_question string) string {
 	data_string := "question=" + question +
-								 "&answer=" + answer +
-								 "&next_question=" + next_question
+		"&answer=" + answer +
+		"&next_question=" + next_question
 	return data_string
 }
 
@@ -91,34 +91,34 @@ func createBaseContents(question_text string, contents interface{}) string {
 			"layout": "vertical",
 			"contents": []interface{}{
 				map[string]interface{}{
-					"type":    "text",
-					"text":    question_text,
+					"type": "text",
+					"text": question_text,
 					// "color":   "#ffffff",
 					"align":   "start",
 					"size":    "md",
 					"gravity": "center",
-					"wrap": true,
+					"wrap":    true,
 				},
 				map[string]interface{}{
-					"type": "box",
+					"type":   "box",
 					"layout": "vertical",
 					"contents": []interface{}{
 						map[string]interface{}{
-							"type": "box",
+							"type":   "box",
 							"layout": "vertical",
 							"contents": []interface{}{
 								map[string]interface{}{
 									"type": "filler",
 								},
 							},
-							"width": "10%",
+							"width":           "10%",
 							"backgroundColor": "#f0f0f0",
-							"height": "6px",
+							"height":          "6px",
 						},
 					},
 					"backgroundColor": "#9FD8E36E",
-					"height": "6px",
-					"margin": "sm",
+					"height":          "6px",
+					"margin":          "sm",
 				},
 			},
 			"backgroundColor": "#DE5658",

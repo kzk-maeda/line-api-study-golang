@@ -17,7 +17,7 @@ func controlSession(user_id string, next_question string) (session.Session, erro
 	}
 
 	// TODO:SessionレコードのDataが古い場合、新たにSessionを生成
-	
+
 	// Sessionレコードが存在する場合、Questionを更新
 	user_session, err = session.UpdateSession(user_id, next_question)
 	return user_session, err
