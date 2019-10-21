@@ -26,7 +26,7 @@ type User struct {
 
 func RegisterData(user_id string, question_no string, description string, answer string) (User, error) {
 	// user_idのレコードを取得：ない場合作成
-	data, err := getData(user_id)
+	data, err := GetData(user_id)
 	fmt.Println(data.Answers)
 	if err != nil {
 		data, err = setData(user_id)
@@ -36,6 +36,29 @@ func RegisterData(user_id string, question_no string, description string, answer
 	data, err = updateData(user_id, question_no, description, answer)
 
 	return data, err
+}
+
+func GetData(user_id string) (User, error) {
+	data := User{}
+
+	err := DataTable.Get("user_id", user_id).One(&data)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return data, err
+}
+
+func DeleteAnswerData(user_id string)  {
+	answer_map := map[string]*Answer{}
+
+	qerr := DataTable.Update("user_id", user_id).
+		Set("answers", answer_map).
+		Run()
+	if qerr != nil {
+		fmt.Println(qerr)
+	}
+
 }
 
 func setData(user_id string) (User, error) {
@@ -57,7 +80,7 @@ func updateData(user_id string, question_no string, description string, answer s
 		UpdatedTime: time.Now().UTC(),
 	}
 	// Answersカラムが存在しない場合、作成して定義した構造体を追加
-	data, err := getData(user_id)
+	data, err := GetData(user_id)
 	answer_map := map[string]*Answer{}
 	if data.Answers != nil {
 		answer_map = data.Answers
@@ -71,18 +94,7 @@ func updateData(user_id string, question_no string, description string, answer s
 	if qerr != nil {
 		fmt.Println(qerr)
 	}
-	data, err = getData(user_id)
-	return data, err
-}
-
-func getData(user_id string) (User, error) {
-	data := User{}
-
-	err := DataTable.Get("user_id", user_id).One(&data)
-	if err != nil {
-		fmt.Println(err)
-	}
-
+	data, err = GetData(user_id)
 	return data, err
 }
 

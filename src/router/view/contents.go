@@ -361,6 +361,10 @@ func CreateQuestion(next_question string) string {
 				),
 			},
 		}
+	case "result":
+		question_text = "診断結果"
+		body_type = "text"
+		textComponent = "あなたの妊娠力はランクBです"
 
 	// default）
 	case "default":
