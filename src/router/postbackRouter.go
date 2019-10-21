@@ -16,7 +16,7 @@ type PostbackData struct {
 func PostbackRouter(user_id string, postbackData string) string {
 	data := initializePostbackData(postbackData)
 	controlSession(user_id, data.NexQuestion)
-	replyText := view.CreateQuestion("1")
+	replyText := view.CreateQuestion(data.NexQuestion)
 
 	return replyText
 }
