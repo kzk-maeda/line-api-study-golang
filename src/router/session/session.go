@@ -9,55 +9,61 @@ import (
 	"github.com/guregu/dynamo"
 )
 
+var SessionTable dynamo.Table
+
 type Session struct {
 	UserId string `dynamo:"user_id"`
 	QuestionId string `dynamo:"question_id"`
   CreatedTime time.Time `dynamo:"created_time"`
 }
 
-func SetSession(userId string) Session {
+func SetSession(userId string) (Session, error) {
 	// 最初にSessionをSetするfunction
-	table := initialize()
+	// table := initialize()
 	session := Session{UserId: userId, QuestionId: "1", CreatedTime: time.Now().UTC()}
 
-	err := table.Put(session).Run()
+	err := SessionTable.Put(session).Run()
 	if err != nil {
-		fmt.Println("err")
-		panic(err.Error())
+		fmt.Println(err)
+		// panic(err.Error())
 	}
 
-	return session
+	return session, err
 }
 
-func GetSession(userId string) Session {
+func GetSession(userId string) (Session, error) {
 	// userIdからSessionを取得するfunction
-	table := initialize()
+	// table := initialize()
 	session := Session{}
 
-	err := table.Get("user_id", userId).All(&session)
+	err := SessionTable.Get("user_id", userId).One(&session)
 	if err != nil {
-		fmt.Println("err")
-		panic(err.Error())
+		fmt.Println(err)
+		// panic(err.Error())
 	}
 
-	return session
+	return session, err
 }
 
-func UpdateSession(userId string, nextQuestionId string) {
+func UpdateSession(userId string, nextQuestionId string) (Session, error) {
 	// Sessionを更新するfunction
-	table := initialize()
+	// table := initialize()
 
-	err := table.Update("user_id", userId).Set("question_id", nextQuestionId).Run()
+	err := SessionTable.Update("user_id", userId).
+		Set("question_id", nextQuestionId).
+		Set("created_time", time.Now().UTC()).
+		Run()
 	if err != nil {
-		fmt.Println("err")
-		panic(err.Error())
+		fmt.Println(err)
+		// panic(err.Error())
 	}
-
+	session, err := GetSession(userId)
+	return session, err
 }
 
-func initialize() dynamo.Table {
+func init() {
 	ddb := dynamo.New(session.New())
-	table := ddb.Table("session_table")
+	SessionTable = ddb.Table("session_table")
 
-	return table
+	return
 }

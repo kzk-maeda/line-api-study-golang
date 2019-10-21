@@ -13,8 +13,9 @@ type PostbackData struct {
 	NexQuestion string
 }
 
-func PostbackRouter(postbackData string) string {
-	// data := initializePostbackData(postbackData)
+func PostbackRouter(user_id string, postbackData string) string {
+	data := initializePostbackData(postbackData)
+	controlSession(user_id, data.NexQuestion)
 	replyText := view.CreateQuestion("1")
 
 	return replyText

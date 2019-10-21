@@ -9,6 +9,9 @@ import (
 	"github.com/guregu/dynamo"
 )
 
+var DataTable dynamo.Table
+
+
 type User struct {
 	UserId string `dynamo:"user_id"`
   CreatedTime time.Time `dynamo:"created_time"`
@@ -16,21 +19,20 @@ type User struct {
 
 func TestCall()  {
 	fmt.Println("test")
-	table := initialize()
 
 	u := User{UserId: "3", CreatedTime: time.Now().UTC()}
 	fmt.Println(u)
 
-	if err := table.Put(u).Run(); err != nil {
+	if err := DataTable.Put(u).Run(); err != nil {
     fmt.Println("err")
     panic(err.Error())
   }
 
 }
 
-func initialize() dynamo.Table {
+func init() {
 	ddb := dynamo.New(session.New())
-	table := ddb.Table("data_table")
+	DataTable = ddb.Table("data_table")
 
-	return table
+	return
 }
