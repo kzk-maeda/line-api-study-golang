@@ -26,10 +26,11 @@ func PostbackRouter(user_id string, postbackData string) string {
 
 	// NextQuestionが"result"だった場合は結果計算処理に移動
 	if data.NextQuestion == "result" {
-		rank := calculateRank(user_id)
-		BMI := calculateBMI(user_id)
-		fmt.Println(BMI)
-		replyText = view.CreateResult(data.NextQuestion, rank)
+		answer_params := ReturnAnswerParams(user_id)
+		// rank := calculateRank(user_id)
+		// BMI := calculateBMI(user_id)
+		// fmt.Println(BMI)
+		replyText = view.CreateResult(answer_params)
 	}
 
 	return replyText

@@ -15,6 +15,7 @@ func MessageRouter(user_id string, message_text string) string {
 		repository.DeleteAnswerData(user_id)
 	}
 	// TODO: Validation
+	validate_check()
 
 	// 今の質問番号をSessionから取得
 	user_session, _ := session.GetSession(user_id)
@@ -30,4 +31,9 @@ func MessageRouter(user_id string, message_text string) string {
 	replyText = view.CreateQuestion(next_question)
 
 	return replyText
+}
+
+// TODO:
+func validate_check()  {
+	
 }

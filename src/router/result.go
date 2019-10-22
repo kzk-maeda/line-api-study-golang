@@ -5,12 +5,44 @@ import (
 	"math"
 	"strconv"
 	"router/repository"
+	"router/dto"
 )
 
-func calculateRank(user_id string) string {
+func ReturnAnswerParams(user_id string) dto.AnswerParams {
 	// Databaseから対象user_idの結果を取得
 	data, _ := repository.GetData(user_id)
 	fmt.Println(data.Answers)
+
+	rank := calculateRank(data)
+	bmi := calculateBMI(data)
+	semen := ""
+	amh := ""
+	menstrual_cycle := ""
+	if val, ok := data.Answers["2-4"]; ok {
+		semen = val.Answer
+	}
+	if val, ok := data.Answers["6-6"]; ok {
+		amh = val.Answer
+	}
+	if val, ok := data.Answers["6-1"]; ok {
+		menstrual_cycle = val.Answer
+	}
+
+	answer_params := dto.AnswerParams{
+		Rank : rank,
+		BMI : bmi,
+		Semen : semen,
+		AMH : amh,
+		MenstrualCycle : menstrual_cycle,
+	}
+	
+	return answer_params
+}
+
+func calculateRank(data repository.User) string {
+	// Databaseから対象user_idの結果を取得
+	// data, _ := repository.GetData(user_id)
+	// fmt.Println(data.Answers)
 
 	// 結果の各値から診断結果を計算
 	score := 0
@@ -117,9 +149,9 @@ func calculateRank(user_id string) string {
 	return rank
 }
 
-func calculateBMI(user_id string) float64 {
+func calculateBMI(data repository.User) float64 {
 	// Databaseから対象user_idの結果を取得
-	data, _ := repository.GetData(user_id)
+	// data, _ := repository.GetData(user_id)
 
 	// BMIを計算
 	height, _ := strconv.Atoi(data.Answers["3-2"].Answer)
