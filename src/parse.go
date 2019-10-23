@@ -1,6 +1,7 @@
 package main
 
 import (
+	// "fmt"
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/base64"
@@ -28,7 +29,9 @@ func validateSignature(channelSecret, signature string, body []byte) bool {
 	if err != nil {
 		return false
 	}
+	// fmt.Println("decoded signature : " + string(decoded))
 	hash := hmac.New(sha256.New, []byte(channelSecret))
 	hash.Write(body)
+	// fmt.Println("body : " + string(body))
 	return hmac.Equal(decoded, hash.Sum(nil))
 }

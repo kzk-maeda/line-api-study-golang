@@ -15,11 +15,27 @@ func ReturnAnswerParams(user_id string) dto.AnswerParams {
 
 	rank := calculateRank(data)
 	bmi := calculateBMI(data)
+	married := ""
+	semen_exam := ""
 	semen := ""
+	age := ""
+	amh_exam := ""
 	amh := ""
 	menstrual_cycle := ""
+	if val, ok := data.Answers["1"]; ok {
+		married = val.Answer
+	}
+	if val, ok := data.Answers["2-3"]; ok {
+		semen_exam = val.Answer
+	}
 	if val, ok := data.Answers["2-4"]; ok {
 		semen = val.Answer
+	}
+	if val, ok := data.Answers["3-1"]; ok {
+		age = val.Answer
+	}
+	if val, ok := data.Answers["6-5"]; ok {
+		amh_exam = val.Answer
 	}
 	if val, ok := data.Answers["6-6"]; ok {
 		amh = val.Answer
@@ -31,7 +47,11 @@ func ReturnAnswerParams(user_id string) dto.AnswerParams {
 	answer_params := dto.AnswerParams{
 		Rank : rank,
 		BMI : bmi,
+		Married : married,
+		SemenExam : semen_exam,
 		Semen : semen,
+		Age : age,
+		AMHExam : amh_exam,
 		AMH : amh,
 		MenstrualCycle : menstrual_cycle,
 	}
