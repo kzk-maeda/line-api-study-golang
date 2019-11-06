@@ -14,6 +14,11 @@ func MessageRouter(user_id string, message_text string) string {
 	if message_text == "診断スタート" {
 		session.DeleteSession(user_id)
 		repository.DeleteAnswerData(user_id)
+		// 次の質問IDをSessionTableに格納
+		_, err := controlTextSession(user_id)
+		if err != nil {
+			return replyText
+		}
 		replyText := view.CreateQuestion("1")
 		return replyText
 	}
