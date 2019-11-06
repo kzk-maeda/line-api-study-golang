@@ -87,9 +87,8 @@ func createBaseContents(question_text string, contents interface{}) string {
 	map_flex_contents := map[string]interface{}{
 		"type": "bubble",
 		"header": map[string]interface{}{
-			"type":            "box",
-			"layout":          "vertical",
-			"backgroundColor": "#66cdaa",
+			"type":   "box",
+			"layout": "vertical",
 			"contents": []interface{}{
 				map[string]interface{}{
 					"type": "text",
@@ -122,15 +121,14 @@ func createBaseContents(question_text string, contents interface{}) string {
 					"margin":          "sm",
 				},
 			},
-			// "backgroundColor": "#66cdaa",
 			"paddingTop":    "19px",
 			"paddingAll":    "12px",
 			"paddingBottom": "16px",
 		},
 		"body": contents,
 		"styles": map[string]interface{}{
-			"footer": map[string]interface{}{
-				"separator": false,
+			"header": map[string]interface{}{
+				"backgroundColor": "#66cdaa",
 			},
 		},
 	}
