@@ -121,15 +121,14 @@ func createBaseContents(question_text string, contents interface{}) string {
 					"margin":          "sm",
 				},
 			},
-			"backgroundColor": "#DE5658",
-			"paddingTop":      "19px",
-			"paddingAll":      "12px",
-			"paddingBottom":   "16px",
+			"paddingTop":    "19px",
+			"paddingAll":    "12px",
+			"paddingBottom": "16px",
 		},
 		"body": contents,
 		"styles": map[string]interface{}{
-			"footer": map[string]interface{}{
-				"separator": false,
+			"header": map[string]interface{}{
+				"backgroundColor": "#66cdaa",
 			},
 		},
 	}

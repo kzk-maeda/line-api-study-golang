@@ -1,16 +1,16 @@
 package view
 
 import (
-	"fmt"
-	"strconv"
 	"encoding/json"
+	"fmt"
 	"router/dto"
+	"strconv"
 )
 
 func CreateResult(answer_params dto.AnswerParams) string {
 	// message定義を読み込み
 	result_message := resultMessage()
-	
+
 	bubble_list := []interface{}{}
 
 	// val init
@@ -32,11 +32,16 @@ func CreateResult(answer_params dto.AnswerParams) string {
 	// rankの値から医師コメントBubbleを生成
 	header_text = "医師からのコメント"
 	switch answer_params.Rank {
-		case "A": body_text = result_message.DoctorComment.A
-		case "B": body_text = result_message.DoctorComment.B
-		case "C": body_text = result_message.DoctorComment.C
-		case "D": body_text = result_message.DoctorComment.D
-		case "E": body_text = result_message.DoctorComment.E
+	case "A":
+		body_text = result_message.DoctorComment.A
+	case "B":
+		body_text = result_message.DoctorComment.B
+	case "C":
+		body_text = result_message.DoctorComment.C
+	case "D":
+		body_text = result_message.DoctorComment.D
+	case "E":
+		body_text = result_message.DoctorComment.E
 	}
 	body_text_list = []string{
 		body_text,
@@ -49,9 +54,12 @@ func CreateResult(answer_params dto.AnswerParams) string {
 	header_text = "BMI値について"
 	bmi_main_message := "あなたのBMI値は" + strconv.FormatFloat(answer_params.BMI, 'f', 2, 64) + "です。\n"
 	switch {
-	case answer_params.BMI <= 18.5: body_text = result_message.BMIComment.Low
-	case answer_params.BMI >= 25: body_text = result_message.BMIComment.High
-	default: body_text = " "
+	case answer_params.BMI <= 18.5:
+		body_text = result_message.BMIComment.Low
+	case answer_params.BMI >= 25:
+		body_text = result_message.BMIComment.High
+	default:
+		body_text = " "
 	}
 	body_text_list = []string{
 		bmi_main_message,
@@ -117,12 +125,12 @@ func joinContents(header_text string, body_text_list []string) interface{} {
 
 func createBubbleBodyContentsItem(body_text string) interface{} {
 	bubble_body_contents_item := map[string]interface{}{
-		"type":   "text",
-		"text":   body_text,
-		"color":  "#8C8C8C",
-		"size":   "sm",
-		// "weight": "bold",　
-		"wrap":   true,
+		"type":  "text",
+		"text":  body_text,
+		"color": "#8C8C8C",
+		"size":  "sm",
+		// "weight": "bold",
+		"wrap": true,
 	}
 
 	return bubble_body_contents_item
@@ -158,27 +166,27 @@ func createBubbleContentsItem(header_text string, body_contents interface{}) int
 		"type": "bubble",
 		"size": "mega",
 		"header": map[string]interface{}{
-			"type": "box",
+			"type":   "box",
 			"layout": "vertical",
 			"contents": []interface{}{
 				map[string]interface{}{
 					"type": "text",
 					"text": header_text,
 					// "color": "#ffffff",
-					"align": "start",
-					"size": "md",
+					"align":   "start",
+					"size":    "md",
 					"gravity": "center",
 				},
 			},
 			"backgroundColor": "#FF6B6E",
-			"paddingTop": "19px",
-			"paddingAll": "12px",
-			"paddingBottom": "16px",
+			"paddingTop":      "19px",
+			"paddingAll":      "12px",
+			"paddingBottom":   "16px",
 		},
 		"body": body_contents,
 		"styles": map[string]interface{}{
-			"footer": map[string]interface{}{
-				"separator": false,
+			"header": map[string]interface{}{
+				"backgroundColor": "#66cdaa",
 			},
 		},
 	}
@@ -188,7 +196,7 @@ func createBubbleContentsItem(header_text string, body_contents interface{}) int
 
 func createCarousel(bubble_contents_list []interface{}) string {
 	map_result_contents := map[string]interface{}{
-		"type": "carousel",
+		"type":     "carousel",
 		"contents": bubble_contents_list,
 	}
 	json_result_contents, _ := json.Marshal(map_result_contents)
