@@ -49,7 +49,7 @@ func GetData(user_id string) (User, error) {
 	return data, err
 }
 
-func DeleteAnswerData(user_id string)  {
+func DeleteAnswerData(user_id string) {
 	answer_map := map[string]*Answer{}
 
 	qerr := DataTable.Update("user_id", user_id).

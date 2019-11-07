@@ -87,6 +87,6 @@ func (r *Line) handleText(message *linebot.TextMessage, replyToken, userID strin
 }
 
 func (r *Line) handleFlex(contents, replyToken, userID string) {
-	altText := "this is alt text"
+	altText := "診断ツール"
 	r.SendFlexMessage(altText, contents, replyToken)
 }
